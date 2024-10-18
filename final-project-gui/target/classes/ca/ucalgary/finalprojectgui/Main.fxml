@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.ucalgary.finalprojectgui.MainController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="LoadLibrary" mnemonicParsing="false" onAction="#onActionLoadLibrary" text="Load Library" />
+                        <MenuItem fx:id="LoadWishlist" mnemonicParsing="false" onAction="#onActionLoadWishlist" text="Load Wishlist" />
+                        <MenuItem fx:id="SaveAsLibrary" mnemonicParsing="false" onAction="#onActionSaveAsLibrary" text="Save As (Library)" />
+                        <MenuItem fx:id="SaveAsWishlist" mnemonicParsing="false" onAction="#onActionSaveAsWishlist" text="Save As (Wishlist)" />
+                        <MenuItem fx:id="Quit" mnemonicParsing="false" onAction="#onActionQuit" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem fx:id="About" mnemonicParsing="false" onAction="#onActionAbout" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <SplitPane focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+        <SplitPane dividerPositions="0.24955476402493318, 0.7471059661620658" focusTraversable="true">
+            <items>
+                <AnchorPane prefHeight="548.0" prefWidth="450.0">
+                    <children>
+                        <Button fx:id="addBook" layoutX="52.0" layoutY="96.0" mnemonicParsing="false" onAction="#onActionAddBook" prefHeight="25.0" prefWidth="117.0" text="Add Book" />
+                        <Button fx:id="removeABook" layoutX="52.0" layoutY="138.0" mnemonicParsing="false" onAction="#onActionRemoveABook" prefHeight="25.0" prefWidth="117.0" text="Remove A Book" textAlignment="CENTER" />
+                        <Button fx:id="viewLibrary" layoutX="51.0" layoutY="267.0" mnemonicParsing="false" onAction="#onActionViewLibrary" prefHeight="25.0" prefWidth="117.0" text="View Library" />
+                        <MenuButton fx:id="SearchMenu" layoutX="52.0" layoutY="180.0" mnemonicParsing="false" onAction="#onActionSearchMenu" prefHeight="26.0" prefWidth="118.0" text="Search">
+                            <items>
+                                <MenuItem fx:id="SearchTitle" mnemonicParsing="false" onAction="#onActionSearchTitle" text="Search by title" />
+                                <MenuItem fx:id="SearchAuthor" mnemonicParsing="false" onAction="#onActionSearchAuthor" text="Search by author" />
+                                <MenuItem fx:id="SearchGenre" mnemonicParsing="false" onAction="#onActionSearchGenre" text="Search by genre" />
+                                <MenuItem fx:id="SearchRating" mnemonicParsing="false" onAction="#onActionSearchRating" text="Search by rating" />
+                            </items>
+                        </MenuButton>
+                        <MenuButton fx:id="OptionsMenu" layoutX="52.0" layoutY="222.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Options">
+                            <items>
+                                <MenuItem fx:id="Edit" mnemonicParsing="false" onAction="#onActionEdit" text="Edit" />
+                                <MenuItem fx:id="AddWishlist" mnemonicParsing="false" onAction="#onActionAddWishlist" text="Add to wishlist" />
+                                <MenuItem fx:id="RemoveWishlist" mnemonicParsing="false" onAction="#onActionRemoveWishlist" text="Remove from wishlist" />
+                                <MenuItem fx:id="MoveToLibraryOption" mnemonicParsing="false" onAction="#onActionMoveToLibraryOption" text="Move to Library" />
+                            </items>
+                        </MenuButton>
+                        <MenuButton fx:id="SpecialMenu" layoutX="52.0" layoutY="311.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Special">
+                            <items>
+                                <MenuItem fx:id="HighestRated" mnemonicParsing="false" onAction="#onActionHighestRated" text="Highest Rated" />
+                                <MenuItem fx:id="NewestEntry" mnemonicParsing="false" onAction="#onActionNewestEntry" text="Newest Entry" />
+                                <MenuItem fx:id="Recommendation" mnemonicParsing="false" onAction="#onActionRecommendation" text="Recommendation" />
+                                <MenuItem fx:id="ViewWishlist" mnemonicParsing="false" onAction="#onActionViewWishlist" text="View Wishlist" />
+                            </items>
+                        </MenuButton>
+                        <Label layoutX="80.0" layoutY="40.0" text="MENU">
+                            <font>
+                                <Font name="Javanese Text" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <SplitPane prefHeight="546.0" prefWidth="300.0">
+                    <items>
+                        <ScrollPane prefHeight="546.0" prefWidth="276.0">
+                            <content>
+                                <AnchorPane prefHeight="550.0" prefWidth="436.0">
+                                    <children>
+                                        <Pane fx:id="WTLPane" layoutX="94.0" layoutY="86.0" prefHeight="296.0" prefWidth="279.0" visible="false">
+                                            <children>
+                                                <TextField fx:id="MTLTitle" layoutX="65.0" layoutY="50.0" onAction="#onActionMTLTitle" />
+                                                <Label layoutX="29.0" layoutY="54.0" text="Title" />
+                                                <Button fx:id="MoveToLibrary" layoutX="90.0" layoutY="83.0" mnemonicParsing="false" onAction="#onActionMoveToLibrary" text="Move to Library" />
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="ABPane" layoutX="92.0" layoutY="86.0" prefHeight="296.0" prefWidth="279.0" visible="false" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="92.0">
+                                            <children>
+                                                <Button fx:id="ABAddBook" layoutX="81.0" layoutY="226.0" mnemonicParsing="false" onAction="#onActionABAddBook" prefHeight="25.0" prefWidth="117.0" text="Add To Library" />
+                                                <Button fx:id="AWAddBook" layoutX="81.0" layoutY="226.0" mnemonicParsing="false" onAction="#onActionAWAddBook" prefHeight="25.0" prefWidth="117.0" text="Add to Wishlist" />
+                                                <Label layoutX="22.0" layoutY="190.0" text="Year" />
+                                                <Label layoutX="22.0" layoutY="152.0" text="Rating" />
+                                                <Label layoutX="22.0" layoutY="111.0" text="Genre" />
+                                                <Label layoutX="22.0" layoutY="75.0" text="Author" />
+                                                <Label layoutX="22.0" layoutY="36.0" text="Title" />
+                                                <TextField fx:id="ABTitle" layoutX="65.0" layoutY="32.0" onAction="#onActionABTitle" promptText="Enter the book title" />
+                                                <TextField fx:id="ABAuthor" layoutX="65.0" layoutY="71.0" onAction="#onActionABAuthor" promptText="Enter the book author" />
+                                                <TextField fx:id="ABGenre" layoutX="65.0" layoutY="107.0" onAction="#onActionABGenre" promptText="Enter the book genre" />
+                                                <TextField fx:id="ABRating" layoutX="65.0" layoutY="148.0" onAction="#onActionABRating" promptText="Enter the book rating" />
+                                                <TextField fx:id="ABYear" layoutX="65.0" layoutY="186.0" onAction="#onActionABYear" promptText="Enter the book year" />
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="RBPane" layoutX="92.0" layoutY="86.0" prefHeight="296.0" prefWidth="279.0" visible="false" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="92.80000000000001">
+                                            <children>
+                                                <TextField fx:id="RBTitle" layoutX="65.0" layoutY="70.0" onAction="#onActionRBTitle" promptText="Enter a Book Title" />
+                                                <Label layoutX="28.0" layoutY="74.0" text="Title" />
+                                                <Button fx:id="RBRemoveABook" layoutX="39.0" layoutY="110.0" mnemonicParsing="false" onAction="#onActionRBRemoveABook" prefHeight="25.0" prefWidth="97.0" text="Remove Book" />
+                                                <Button fx:id="RBRemoveAll" layoutX="140.0" layoutY="110.0" mnemonicParsing="false" onAction="#onActionRBRemoveAll" prefHeight="25.0" prefWidth="97.0" text="Remove All" />
+                                                <Button fx:id="RWRemoveBook" layoutX="39.0" layoutY="110.0" mnemonicParsing="false" onAction="#onActionRWRemoveBook" prefHeight="25.0" prefWidth="97.0" text="Remove Book" />
+                                                <Button fx:id="RWRemoveAll" layoutX="140.0" layoutY="110.0" mnemonicParsing="false" onAction="#onActionRWRemoveAll" prefHeight="25.0" prefWidth="97.0" text="Remove All" />
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="SPane" layoutX="93.0" layoutY="103.0" prefHeight="296.0" prefWidth="279.0" visible="false" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                                            <children>
+                                                <TextField fx:id="SAuthor" layoutX="65.0" layoutY="70.0" onAction="#onActionSAuthor" promptText="Enter an Author" />
+                                                <Label layoutX="20.0" layoutY="74.0" text="Author" />
+                                                <Button fx:id="SSearch" layoutX="81.0" layoutY="117.0" mnemonicParsing="false" onAction="#onActionSSearch" prefHeight="25.0" prefWidth="117.0" text="Search" />
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="EPane" layoutX="92.0" layoutY="102.0" prefHeight="296.0" prefWidth="280.0" visible="false">
+                                            <children>
+                                                <Pane fx:id="EditPane" layoutX="17.0" layoutY="24.0" prefHeight="237.0" prefWidth="244.0" visible="false">
+                                                    <children>
+                                                        <TextField fx:id="editAuthor" layoutX="48.0" layoutY="50.0" onAction="#onActionEAuthor" promptText="Enter an author" visible="false" />
+                                                        <TextField fx:id="editRating" layoutX="48.0" layoutY="50.0" onAction="#onActionERating" promptText="Enter a rating" visible="false" />
+                                                        <TextField fx:id="editYear" layoutX="48.0" layoutY="50.0" onAction="#onActionEYear" promptText="Enter a year" visible="false" />
+                                                        <TextField fx:id="editGenre" layoutX="48.0" layoutY="50.0" onAction="#onActionEGenre" promptText="Enter a genre" visible="false" />
+                                                        <TextField fx:id="editTitle" layoutX="48.0" layoutY="14.0" onAction="#onActionETitle" promptText="Enter a title" />
+                                                        <Button fx:id="EditButton" layoutX="104.0" layoutY="81.0" mnemonicParsing="false" onAction="#onActionEditButton" text="Edit" />
+                                                    </children>
+                                                </Pane>
+                                                <MenuButton fx:id="EditDropDown" layoutX="87.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Edit">
+                                                    <items>
+                                                        <MenuItem fx:id="EditAuthor" mnemonicParsing="false" onAction="#onActionEditAuthor" text="Edit by author" />
+                                                        <MenuItem fx:id="EditGenre" mnemonicParsing="false" onAction="#onActionEditGenre" text="Edit by genre" />
+                                                        <MenuItem fx:id="EditRating" mnemonicParsing="false" onAction="#onActionEditRating" text="Edit by rating" />
+                                                        <MenuItem fx:id="EditYear" mnemonicParsing="false" onAction="#onActionEditYear" text="Edit by year published" />
+                                                    </items>
+                                                </MenuButton>
+                                            </children>
+                                        </Pane>
+                                        <BorderPane fx:id="VLBorderPane" layoutX="85.0" layoutY="75.0" prefHeight="331.0" prefWidth="294.0" visible="false">
+                                            <center>
+                                                <GridPane fx:id="VLGridPane" prefHeight="298.0" prefWidth="283.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints maxHeight="82.40001833438873" minHeight="4.8000184297561646" prefHeight="82.40001833438873" />
+                                                    </rowConstraints>
+                                                </GridPane>
+                                            </center>
+                                            <top>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="5.0" stroke="BLACK" strokeType="INSIDE" width="293.0" BorderPane.alignment="CENTER" />
+                                            </top>
+                                            <left>
+                                                <Rectangle fx:id="VLLibraryWall" arcHeight="5.0" arcWidth="5.0" height="353.0" stroke="BLACK" strokeType="INSIDE" width="5.0" BorderPane.alignment="CENTER" />
+                                            </left>
+                                            <right>
+                                                <Rectangle fx:id="VLLibraryWall2" arcHeight="5.0" arcWidth="5.0" height="353.0" stroke="BLACK" strokeType="INSIDE" width="5.0" BorderPane.alignment="CENTER" />
+                                            </right>
+                                            <bottom>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="5.0" stroke="BLACK" strokeType="INSIDE" width="293.0" BorderPane.alignment="CENTER" />
+                                            </bottom>
+                                        </BorderPane>
+                                        <Label fx:id="VLLibraryLabel" layoutX="197.0" layoutY="30.0" prefHeight="56.0" prefWidth="87.0" text="Library" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="152.0">
+                                            <font>
+                                                <Font name="Javanese Text" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Pane fx:id="STitlePane" layoutX="70.0" layoutY="92.0" prefHeight="296.0" prefWidth="279.0" visible="false" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                                            <children>
+                                                <TextField fx:id="STitle" layoutX="65.0" layoutY="70.0" onAction="#onActionSTitle" promptText="Enter a title" />
+                                                <Label layoutX="20.0" layoutY="74.0" text="Title" />
+                                                <Button fx:id="STitleSearch" layoutX="81.0" layoutY="117.0" mnemonicParsing="false" onAction="#onActionSTitleSearch" prefHeight="25.0" prefWidth="117.0" text="Search" />
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="SGenrePane" layoutX="56.0" layoutY="84.0" prefHeight="296.0" prefWidth="279.0" visible="false" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                                            <children>
+                                                <TextField fx:id="SGenre" layoutX="65.0" layoutY="70.0" onAction="#onActionSGenre" promptText="Enter a genre" />
+                                                <Label layoutX="20.0" layoutY="74.0" text="Genre" />
+                                                <Button fx:id="SGenreSearch" layoutX="81.0" layoutY="117.0" mnemonicParsing="false" onAction="#onActionSGenreSearch" prefHeight="25.0" prefWidth="117.0" text="Search" />
+                                            </children>
+                                        </Pane>
+                                        <Pane fx:id="SRatingPane" layoutX="90.0" layoutY="92.0" prefHeight="296.0" prefWidth="279.0" visible="false" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                                            <children>
+                                                <TextField fx:id="SRating" layoutX="65.0" layoutY="70.0" onAction="#onActionSRating" promptText="Enter a rating" />
+                                                <Label layoutX="20.0" layoutY="74.0" text="Rating" />
+                                                <Button fx:id="SRatingSearch" layoutX="81.0" layoutY="117.0" mnemonicParsing="false" onAction="#onActionSRatingSearch" prefHeight="25.0" prefWidth="117.0" text="Search" />
+                                            </children>
+                                        </Pane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                    </items>
+                </SplitPane>
+                <Pane prefHeight="546.0" prefWidth="384.0">
+                    <children>
+                        <TextArea fx:id="InfoArea" layoutX="12.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Label layoutX="87.0" layoutY="39.0" text="INFO">
+                            <font>
+                                <Font name="Javanese Text" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </items>
+        </SplitPane>
+        <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+            <children>
+                <Label fx:id="LeftStatus" text="Left status" />
+                <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+                <Label fx:id="RightStatus" text="Right Status" />
+            </children>
+            <padding>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+        </HBox>
+    </children>
+</VBox>
